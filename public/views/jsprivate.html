@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
 </head>
+
 <body>
 	<script type="text/javascript">
-		var cnt = (function(){
+		/* 闭包 */
+		/* var cnt = (function(){
 			var i = 0;
 			console.log(i+"wwww");
 			return function(){
@@ -23,7 +26,134 @@
 			return b;
 		}
 		var c = a();  //当函数a的内部函数b被函数a外的一个变量引用的时候，就创建了闭包
-		c();
+		c(); */
+		/* clone */
+	/* 	function clone(obj) {
+			var typeName = Object.prototype.toString.call(obj).slice(8, -1);
+			console.log(typeName);
+			var o;
+			switch (typeName) {
+				case "Undefined":
+					break;
+				case "String":
+					o = obj + "";
+					break;
+				case "Number":
+					o = obj + 0;
+					break;
+				case "Array":
+					o = [];
+					for (var i = 0; i < obj.length; i++) {
+						o.push(obj[i]);
+					}
+					break;
+				case "Object":
+					o = {}
+					for (var j in obj) {
+						o[j] = obj[j];
+					}
+					break;
+				case "Boolean":
+					o = obj;
+					break;
+				default:
+					break;
+			}
+			console.log(o);
+			return o;
+		}
+		var a = 1;
+		var b = "1";
+		var c = { "name": 1 };
+		var d = [1, 2, 3];
+		var e = true;
+		var f = undefined;
+		clone(a);
+		clone(b);
+		clone(c);
+		clone(d);
+		clone(e);
+		clone(f); */
+
+
+		/* 消除相同的数字 */
+		/* function getArr(obj){
+			var arr = [];
+			for(var i = 0; i<obj.length; i++){
+				if(arr.indexOf(obj[i])<0){
+					arr.push(obj[i]);
+				}
+			}
+			console.log(arr);
+			return arr;
+		}
+		var a = [1,1,2,3,4,6,7,6];
+		getArr(a); */
+
+		/* 伪数据 */
+		/* function wei() {
+			console.log(arguments);
+			var args = Array.prototype.slice.call(arguments);
+			console.log(args);
+			args.unshift('(app)');
+			console.log(args);
+			console.log.apply(console,args);
+			
+		}
+		wei(); */
+
+		/* call和apply方法 */
+		/* function add(a,b) {
+			var num = a+b;
+			console.log("a+b="+num);
+		}
+		function  sub(a,b) {
+			var num = a-b;
+			console.log("a-b="+num);
+		}
+		add.call(this,3,2);
+
+		function Animal() {
+			this.name = "Animal";
+			this.showName = function(){
+				console.log(this.name);
+			}
+		}
+		function Cat() {
+			this.name = "Cat";
+		}
+		var animal = new Animal();
+		var cat = new Cat();
+
+		animal.showName.call(cat,"");
+
+		function Animal(name) {
+			this.name = name;
+			this.showName = function(){
+				console.log(this.name);
+			}
+		}
+		function Cat(args) {
+			Animal.call(this,args);
+		}
+		var cat = new Cat("Tom");
+		cat.showName(); */
+
+		/* 统计字符串中祖母个数或统计最多字母数 */
+		var str = "aaaabbbccccddfgh";
+		var arr = str.split('');
+		var arrNum = {}
+		console.log(arr);
+		for(var i=0; i<arr.length;i++){
+			if(arrNum[arr[i]]==undefined){
+				arrNum[arr[i]] = 0;
+			}
+			arrNum[arr[i]]++;
+		}
+		for(var k in arrNum){
+			console.log(k+":"+arrNum[k]);
+		}
 	</script>
 </body>
+
 </html>

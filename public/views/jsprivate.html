@@ -7,6 +7,9 @@
 
 <body>
 	<script type="text/javascript">
+		var a = [1,2,3];
+		var type = Object.prototype.toString.call(a).slice(8,-1);
+		console.log(type);
 		/* 闭包 */
 		/* var cnt = (function(){
 			var i = 0;
@@ -111,7 +114,7 @@
 			var num = a-b;
 			console.log("a-b="+num);
 		}
-		add.call(this,3,2);
+		add.call(this,3,2); */
 
 		function Animal() {
 			this.name = "Animal";
@@ -127,7 +130,7 @@
 
 		animal.showName.call(cat,"");
 
-		function Animal(name) {
+		/* function Animal(name) {
 			this.name = name;
 			this.showName = function(){
 				console.log(this.name);
@@ -140,7 +143,7 @@
 		cat.showName(); */
 
 		/* 统计字符串中祖母个数或统计最多字母数 */
-		var str = "aaaabbbccccddfgh";
+		/* var str = "aaaabbbccccddfgh";
 		var arr = str.split('');
 		var arrNum = {}
 		console.log(arr);
@@ -152,7 +155,7 @@
 		}
 		for(var k in arrNum){
 			console.log(k+":"+arrNum[k]);
-		}
+		} */
 	</script>
 </body>
 

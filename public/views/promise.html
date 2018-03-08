@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+    /* let promise = new Promise(function(resolve,reject){
+        console.log('Promise');
+        resolve();
+    });
+
+    promise.then(function(){
+        console.log('resolved');
+    });
+
+    console.log('Hi!');  //Promise Hi resolved */
+
+    // 异步加载图片
+    /* function loadImageAsync(url) {
+        return new Promise(function(resolve, reject){
+            const image = new Image();
+            image.onload = function(){
+                resolve(image);
+            };
+            image.onerror = function(){
+                reject(new Error('Could not load image at '+url));
+            }
+            image.src = url;
+        });
+    }
+    loadImageAsync('../public/images/1.jpg'); */
+
+    /* //用Promise对象实现的Ajax操作
+    const getJson = function(url){
+        const promise = new Promise(function(resolve, reject){
+            const handler = function(){
+                if(this.readyState !== 4){
+                    return;
+                }
+                if(this.status === 200){
+                    resolve(this.response);
+                }else{
+                    reject(new Error(this.statusText));
+                }
+            };
+            const client = new XMLHttpRequest();
+            client.oprn("GET", url);
+            client.onreadystatechange = handler;
+            client.responseType = "json";
+            client.setRequestHeader("Accept", "application/json");
+            client.send();
+        })
+
+        return promise;
+    }
+
+    getJson('/post.json').then(function(json){
+        console.log('Contents:'+json);
+    },function(error){
+        console.error("出错了", error); 
+    }) */
+
+    //promise会吃掉错误
+    const someAsyncThing = function(){
+        return new Promise(function(resolve, reject){
+            resolve(x+2);
+        });
+    }
+    someAsyncThing().then(function(){
+        console.log('every thing is great');
+    });
+    
+    setTimeout(() => {
+        console.log(123);
+    }, 2000);
+    </script>
+</body>
+</html>

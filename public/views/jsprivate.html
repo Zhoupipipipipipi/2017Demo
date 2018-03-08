@@ -157,6 +157,28 @@
 			console.log(k+":"+arrNum[k]);
 		} */
 	</script>
+	<script>
+		var xhr = new XMLHttpRequest(); // 声明一个请求对象
+
+
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4) {  // readyState 4 代表已向服务器发送请求
+				if (xhr.status === OK) { // // status 200 代表服务器返回成功
+					console.log(xhr.responseText); // 这是返回的文本
+				} else {
+					console.log("Error: " + xhr.status); // 连接失败的时候抛出错误
+				}
+			}
+		}
+
+		xhr.open('GET', 'xxxx');
+
+		// 如何设置请求头? xhr.setRequestHeader(header, value);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+
+		xhr.send(null); // get方法 send null(亦或者不传,则直接是传递 header) ,post 的 send 则是传递值
+
+	</script>
 </body>
 
 </html>

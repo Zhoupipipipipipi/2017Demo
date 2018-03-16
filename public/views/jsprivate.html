@@ -7,9 +7,9 @@
 
 <body>
 	<script type="text/javascript">
-		var a = [1,2,3];
+		/* var a = [1,2,3];
 		var type = Object.prototype.toString.call(a).slice(8,-1);
-		console.log(type);
+		console.log(type); */
 		/* 闭包 */
 		/* var cnt = (function(){
 			var i = 0;
@@ -116,7 +116,7 @@
 		}
 		add.call(this,3,2); */
 
-		function Animal() {
+		/* function Animal() {
 			this.name = "Animal";
 			this.showName = function(){
 				console.log(this.name);
@@ -128,7 +128,7 @@
 		var animal = new Animal();
 		var cat = new Cat();
 
-		animal.showName.call(cat,"");
+		animal.showName.call(cat,""); */
 
 		/* function Animal(name) {
 			this.name = name;
@@ -158,7 +158,7 @@
 		} */
 	</script>
 	<script>
-		var xhr = new XMLHttpRequest(); // 声明一个请求对象
+		/* var xhr = new XMLHttpRequest(); // 声明一个请求对象
 
 
 		xhr.onreadystatechange = function () {
@@ -177,7 +177,111 @@
 		xhr.setRequestHeader('Content-Type', 'application/json');
 
 		xhr.send(null); // get方法 send null(亦或者不传,则直接是传递 header) ,post 的 send 则是传递值
+ */
+	</script>
+	<script>
+	/* 2018.3.15 */
+	/* 变量提升和异步 */
+	/* var a = 10;
+	function A() {
+		console.log(a);   //1.undefined
+		//因为内部的变量a声明提升，找变量先找函数当前作用域的变量
+		var a = 20;
+		console.log(a);   //2.20
+		for(var a = 1; a<5; a++){
+			console.log(a);   //3.输出1234
+			setTimeout(function(){
+				console.log(a);   //5.输出四个5
+				//因为定时器是异步的，异步代码会扔到任务队列上，先让主线程代码执行，等任务队列通知可以执行才会扔到主线程执行定时器，所以当定时器在执行的时候，for里面的a已经变成5了
+			},0)
+		}
+	}
+	A();
+	console.log(a);   //4.10 */
+	/* 提高一下难度 */
+	/* console.log(a);        //1.undefined
+	var a = "10";   
+	console.log(a);        //2.10
+	function A(a) {
+		console.log(a);    //3.30
+		var a = "20";
+		console.log(a);    //4.20
+		arguments[0] = '40';
+ 		console.log(a);    //5. 40
+		for(var a = 1;a<5; a++){
+			setTimeout(() => {
+				console.log(new Date+a);  //8.Thu Mar 15 2018 09:29:39 GMT+0800 (中国标准时间)5
+			}, 1000);
+		}
+		console.log(new Date+a);   //6.Thu Mar 15 2018 09:29:38 GMT+0800 (中国标准时间)5
+	}
+	A("30");
+	console.log(a);   //7. 10 */
+	/* this指向 */
+	/* var obj = {
+		showFunction: function(){
 
+		}
+	}
+	obj.showFunction();   //this指向obj
+	var newObj = obj.showFunction;
+	newObj();    //this指向window
+	//严格模式下，this不会自动转换为window，默认为undefined */
+	/* 1.在全局直接调用或者通过window this调用都是指向window */
+	/* var a = 10;
+	console.log(window.a);   //10
+	console.log(this.a);  //10
+	console.log(a); //10 */	
+	/* 2.对象调用中this指向当前调用的对象 */
+	/* var obj = {
+		showFunction(){
+			console.log(this);  //obj
+			console.log(this==obj);  //true
+		}
+	}
+	obj.showFunction(); */
+	/* 3:this指向绑定事件的dom元素 */
+	/* document.querySelector('#id').onclick = function(){
+		console.log(this ==  document.querySelector('#id'));  //true
+	} */
+	/* 4:构造函数中的this指向实例化的对象 */
+	/* function Person(){
+		this.nam = 'xx';
+		//这里面的this会在new调用函数的指向隐式创建的对象，并隐式退回出来
+	}
+	var man = new Person(); */
+	/* 5:call和apply和bind中去指向函数体内的this指向 */
+	/* var obj = {
+		namne :'xx老师'
+	}
+	var names = 'ss老师';
+	function fun(){
+		console.log(this.name);
+	}
+
+	fun.call(obj);  //xx老师
+	fun.apply(obj);  //xx老师
+	fun.bind(obj)();  //xx老师 */
+	function a() {
+		var i = 0;
+		console.log(i + "xxx")
+		function b() {
+			console.log(++i);
+		}
+		return b;
+	}
+	var c = a(); //当函数a的内部函数b被函数a外的一个变量引用的时候，就创建了闭包
+	c();  //1
+	c();  //2
+	var cnt = (function () {
+		var i = 0;
+		console.log(i + "wwww");
+		return function () {
+			console.log(i++);
+		}
+	})();
+	cnt(); //0
+	cnt(); //1
 	</script>
 </body>
 
